@@ -13,7 +13,7 @@ public class Unit : MonoBehaviour {
     cData unitInfo;
     
     public GameObject enemy;
-
+    public GameObject ally;
     NavMeshAgent agent;
     void Awake()
     {
@@ -29,6 +29,7 @@ public class Unit : MonoBehaviour {
         unitInfo = cData.CreatePackage();
         unitInfo.SetValue<Unit>("UNIT", this);
         unitInfo.SetValue<Unit>("ENEMY", enemy.GetComponent<Unit>());
+        unitInfo.SetValue<Unit>("ALLY", enemy.GetComponent<Unit>());
         return unitInfo;
     }
     public void setCommand(Command _command){

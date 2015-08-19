@@ -14,14 +14,15 @@ public class DoubleShot : Ability {
         float distanceBetweenMyUnitAndEnemy = Vector3.Distance(enemyLocation, agent.gameObject.transform.position);
         if (abilityRange >= distanceBetweenMyUnitAndEnemy)
         {
+            Debug.Log("ENEmy health " + enemy.getHealth());
             if (mUnit.getDamage() - enemy.getDefense() > 0)
-                enemy.setHealth(enemy.getHealth() - (mUnit.getDamage() - enemy.getDefense()));
-
+                enemy.setHealth(enemy.getHealth() - 2*(mUnit.getDamage() - enemy.getDefense()));
+            Debug.Log("ENEmy health " + enemy.getHealth());
         }
     }
     public void setupAbilityRange()
     {
-        abilityRange = 5;
+        abilityRange = 10;
     }
     public override float getAbilityRange()
     {

@@ -10,16 +10,20 @@ public class Heal : Ability {
         Unit mUnit = package.GetValue<Unit>("UNIT");
         Unit ally = package.GetValue<Unit>("ALLY");
         Vector3 allyLocation = package.GetValue<Vector3>("ALLYLOCATION");
+        
         NavMeshAgent agent = mUnit.getNavMeshAgent();
         float distanceBetweenMyUnitAndAlly = Vector3.Distance(allyLocation, agent.gameObject.transform.position);
         if (abilityRange >= distanceBetweenMyUnitAndAlly)
         {
+            Debug.Log("Before heal: " + ally.getHealth());
             ally.setHealth(ally.getHealth() + mUnit.getDamage());
+            Debug.Log("After heal: " + ally.getHealth());
         }
+        
     }
     public void setupAbilityRange()
     {
-        abilityRange = 3;
+        abilityRange = 10;
     }
     public override float getAbilityRange()
     {

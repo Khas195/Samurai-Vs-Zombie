@@ -16,7 +16,7 @@ public class AbilityCommand : Command {
             Debug.Log("Ability Command has not set info");
             return;
         }
-        
+        setAbility(new StandGround());
         ability.ExecuteAbility(info);
     }
 

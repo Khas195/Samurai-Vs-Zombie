@@ -6,7 +6,10 @@ public class StandGround : Ability {
     public override void ExecuteAbility(cData package)
     {
         Unit mUnit = package.GetValue<Unit>("UNIT");
+        Debug.Log("Defense " + mUnit.getDefense());
         mUnit.setDefense((int)(mUnit.getDefense() * 1.5));
+
+        Debug.Log("Defense " + mUnit.getDefense());
     }
     public void setupAbilityRange()
     {

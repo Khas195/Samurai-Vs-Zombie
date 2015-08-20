@@ -16,8 +16,11 @@ public class AbilityCommand : Command {
             Debug.Log("Ability Command has not set info");
             return;
         }
-        setAbility(new StandGround());
+        //for test
+        //setAbility(new StandGround());
+
         ability.ExecuteAbility(info);
+        cData.ReturnPackage(info);
     }
 
     

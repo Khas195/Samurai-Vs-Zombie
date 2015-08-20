@@ -15,5 +15,6 @@ public class MoveCommand : Command
         Unit mUnit = info.GetValue<Unit>("UNIT");
         Vector3 destination = info.GetValue<Vector3>("DESTINATION");
         mUnit.getNavMeshAgent().SetDestination(destination);
+        cData.ReturnPackage(info);
     }
 }

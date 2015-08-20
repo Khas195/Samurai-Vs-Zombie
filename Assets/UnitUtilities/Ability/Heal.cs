@@ -9,7 +9,7 @@ public class Heal : Ability {
         setupAbilityRange();
         Unit mUnit = package.GetValue<Unit>("UNIT");
         Unit ally = package.GetValue<Unit>("ALLY");
-        Vector3 allyLocation = package.GetValue<Vector3>("ALLYLOCATION");
+        Vector3 allyLocation = ally.gameObject.transform.position;
         
         NavMeshAgent agent = mUnit.getNavMeshAgent();
         float distanceBetweenMyUnitAndAlly = Vector3.Distance(allyLocation, agent.gameObject.transform.position);

@@ -19,18 +19,18 @@ public class Unit : MonoBehaviour {
     {
         agent = GetComponent<NavMeshAgent>();
         //temporary test
-        if (enemy == null)
-            return;
-        setCommand(new AbilityCommand());
-        ExecuteCommand();
+        //if (enemy == null)
+        //    return;
+        //setCommand(new AttackCommand());
+        //ExecuteCommand();
     }
     public cData getInfo()
     {
         unitInfo = cData.CreatePackage();
         unitInfo.SetValue<Unit>("UNIT", this);
         // 2 dong nay de test, khi UI gui info dc r thi xoa di
-        unitInfo.SetValue<Unit>("ENEMY", enemy.GetComponent<Unit>());
-        unitInfo.SetValue<Unit>("ALLY", enemy.GetComponent<Unit>());
+        //unitInfo.SetValue<Unit>("ENEMY", enemy.GetComponent<Unit>());
+        //unitInfo.SetValue<Unit>("ALLY", enemy.GetComponent<Unit>());
         return unitInfo;
     }
     public void setCommand(Command _command){
@@ -39,6 +39,7 @@ public class Unit : MonoBehaviour {
     }
     public void ExecuteCommand(){
         command.Execute();
+        cData.ReturnPackage(unitInfo);
     }
     public void setHealth(int _health)
     {

@@ -28,5 +28,6 @@ public class AttackCommand : Command
             }
             
         }
+        cData.ReturnPackage(info);
     }
 }

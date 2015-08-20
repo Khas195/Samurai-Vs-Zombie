@@ -9,7 +9,7 @@ public class DoubleShot : Ability {
         setupAbilityRange();
         Unit mUnit = package.GetValue<Unit>("UNIT");
         Unit enemy = package.GetValue<Unit>("ENEMY");
-        Vector3 enemyLocation = package.GetValue<Vector3>("ENEMYLOCATION");
+        Vector3 enemyLocation = enemy.gameObject.transform.position;
         NavMeshAgent agent = mUnit.getNavMeshAgent();
         float distanceBetweenMyUnitAndEnemy = Vector3.Distance(enemyLocation, agent.gameObject.transform.position);
         if (abilityRange >= distanceBetweenMyUnitAndEnemy)

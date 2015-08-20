@@ -5,7 +5,7 @@ public abstract class Ability {
     protected float abilityRange;
     abstract public void ExecuteAbility(cData package);
     abstract public float getAbilityRange();
-    abstract    public bool needToShowRange();
+    abstract public bool needToShowRange();
 
 
 }

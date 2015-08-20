@@ -37,6 +37,7 @@ public class StateStack
     }
     public State Pop()
     {
+        Debug.Log("POP");
         if (mStates.Count > 0)
         {
             mStates.Peek().OnPoped();

@@ -28,6 +28,7 @@ public class Unit : MonoBehaviour {
     {
         unitInfo = cData.CreatePackage();
         unitInfo.SetValue<Unit>("UNIT", this);
+        // 2 dong nay de test, khi UI gui info dc r thi xoa di
         unitInfo.SetValue<Unit>("ENEMY", enemy.GetComponent<Unit>());
         unitInfo.SetValue<Unit>("ALLY", enemy.GetComponent<Unit>());
         return unitInfo;
@@ -39,10 +40,6 @@ public class Unit : MonoBehaviour {
     public void ExecuteCommand(){
         command.Execute();
     }
-
-    
-
-
     public void setHealth(int _health)
     {
         health = _health;

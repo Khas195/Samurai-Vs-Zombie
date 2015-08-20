@@ -121,11 +121,10 @@ namespace Game.Core.MessageModule
                 if (data.ContainsKey(k))
                 {
                     data[k] = _data.GetData()[k];
-                    return;
                 }
-
+                else
                 // Add the key and value to the package  
-                data.Add(k, _data.GetData()[k]);
+                    data.Add(k, _data.GetData()[k]);
             }
         }
         #endregion

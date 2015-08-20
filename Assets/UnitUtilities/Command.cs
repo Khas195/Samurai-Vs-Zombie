@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Game.Core.MessageModule;
+using System.Collections.Generic;
 
 public abstract class Command {
     abstract public void Execute();
@@ -11,14 +12,7 @@ public abstract class Command {
         if (info == null)
             info = package;
         else
-        {
-            // UI cung cap
-            if (info.GetValue<Unit>("ENEMY") == null)
-                info.SetValue<Unit>("ENEMY", package.GetValue<Unit>("ENEMY"));
-            if (info.GetValue<Unit>("ALLY") == null)
-                info.SetValue<Unit>("ALLY", package.GetValue<Unit>("ALLY"));
-            if (info.GetValue<Unit>("DESTINATION") == null)
-                info.SetValue<Vector3>("DESTINATION", package.GetValue<Vector3>("DESTINATION"));
-        }
+            info.AddAllValueFromAnotherPackage(package);
+        
     }
 }

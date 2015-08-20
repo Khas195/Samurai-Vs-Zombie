@@ -11,18 +11,21 @@ public class Unit : MonoBehaviour {
     public int defense;
     Command command;
     cData unitInfo;
-    
-    public GameObject enemy;
-    public GameObject ally;
+    // UI assign
+    //public GameObject enemy;
+    //public GameObject ally;
+
     NavMeshAgent agent;
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        //temporary test
-        //if (enemy == null)
-        //    return;
-        //setCommand(new AttackCommand());
-        //ExecuteCommand();
+        /*temporary test
+        if (enemy == null)
+            return;
+        if (ally == null)
+            return;
+        setCommand(new AttackCommand());
+        ExecuteCommand();*/
     }
     public cData getInfo()
     {
@@ -30,7 +33,7 @@ public class Unit : MonoBehaviour {
         unitInfo.SetValue<Unit>("UNIT", this);
         // 2 dong nay de test, khi UI gui info dc r thi xoa di
         //unitInfo.SetValue<Unit>("ENEMY", enemy.GetComponent<Unit>());
-        //unitInfo.SetValue<Unit>("ALLY", enemy.GetComponent<Unit>());
+        //unitInfo.SetValue<Unit>("ALLY", ally.GetComponent<Unit>());
         return unitInfo;
     }
     public void setCommand(Command _command){

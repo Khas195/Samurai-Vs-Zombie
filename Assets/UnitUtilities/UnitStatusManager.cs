@@ -7,7 +7,7 @@ public class UnitStatusManager : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-       // ArrayList<int> a = new ArrayList<int>();
+        
         
 	}
 	

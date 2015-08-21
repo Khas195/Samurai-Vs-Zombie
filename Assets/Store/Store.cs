@@ -3,10 +3,12 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class Store : MonoBehaviour {
-
-    public Button increaseUnitButton;
     Resolution[] resolutions = Screen.resolutions;
+    
+    int numberOfUnit;
+    public Button increaseUnitButton;
     public Button decreaseUnitButton;
+    public Button backButton;
 	// Use this for initialization
 	void Start () {
         buttonSetup(increaseUnitButton);
@@ -32,5 +34,12 @@ public class Store : MonoBehaviour {
 
     public void handleButton(Button button)
     {
+        if (button == increaseUnitButton)
+            numberOfUnit++;
+        else if (button == decreaseUnitButton)
+            numberOfUnit--;
+        //
+        //else if (button == backButton)
+        //      return numberOfUnit    
     }
 }

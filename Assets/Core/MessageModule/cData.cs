@@ -13,9 +13,8 @@ namespace Game.Core.MessageModule
     }
     public class cData
     {
-
         Dictionary<string, object> data;
-
+        List<string> keys = new List<string>();
         // Object pooling for Package
         #region ObjectPooling
         // Storage and beingUsed for object pool
@@ -77,6 +76,7 @@ namespace Game.Core.MessageModule
 
             // Add the key and value to the package  
             data.Add(key, value);
+            keys.Add(key);            
         }
 
         public void SetValue<T>(string key,ref T value)
@@ -102,6 +102,30 @@ namespace Game.Core.MessageModule
 
             //get the value in the key
             return (T)data[key];
+            
+        }
+        // new code
+        public List<string> GetAllKey()
+        {
+            return keys;
+        }
+        public Dictionary<string, object> GetData()
+        {
+            return data;
+        }
+        public void AddAllValueFromAnotherPackage(cData _data)
+        {
+            foreach (string k in _data.GetAllKey())
+            {
+                // Check if the package already contains that key
+                if (data.ContainsKey(k))
+                {
+                    data[k] = _data.GetData()[k];
+                }
+                else
+                // Add the key and value to the package  
+                    data.Add(k, _data.GetData()[k]);
+            }
         }
         #endregion
     }

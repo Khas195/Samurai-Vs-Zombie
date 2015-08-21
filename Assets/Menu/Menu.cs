@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using Game.Core.StateStackPackage;
 namespace Game.Engine.Menu
 {
     public class Menu : MonoBehaviour

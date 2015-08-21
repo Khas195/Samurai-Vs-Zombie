@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Game.Core.StateStack;
+using Game.Core.StateStackPackage;
 using UnityEngine.UI;
 namespace Game.Engine.Menu
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Game.Core.StateStack
+namespace Game.Core.StateStackPackage
 {
     public interface State
     {

@@ -23,7 +23,6 @@ public class Player : MonoBehaviour {
                 return;
                 
             }
-            UIManager.getInstance().reset();
         }
         //}
     }

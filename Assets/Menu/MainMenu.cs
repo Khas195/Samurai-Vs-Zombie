@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using Game.Core.StateStack;
+using Game.Core.StateStackPackage;
 namespace Game.Engine.Menu
 {
     public class MainMenu : IMenu

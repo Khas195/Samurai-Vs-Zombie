@@ -2,60 +2,61 @@
 using System.Collections;
 using System.Collections.Generic;
 
-using Game.Core.StateStack;
-
-public class StateStack
+namespace Game.Core.StateStackPackage
 {
-    private static StateStack instance = new StateStack();
+    public class StateStack
+    {
+        private static StateStack instance = new StateStack();
 
-    public static StateStack getInstance()
-    {
-        return instance;
-    }
-
-    Stack<State> mStates;
-    public StateStack()
-    {
-        mStates = new Stack<State>();
-    }
-    public void Push(State state)
-    {
-        if (state == null)
+        public static StateStack getInstance()
         {
-            Debug.Log("You are trying to push a null state into stack");
-            return;
+            return instance;
         }
-        if (mStates.Count > 0)
-        {
-            
-            mStates.Peek().OnPressed();
-        }
-        state.OnPushed();
 
-        Debug.Log("A state is push");
-        mStates.Push(state);
-    }
-    public State Pop()
-    {
-        Debug.Log("POP");
-        if (mStates.Count > 0)
+        Stack<State> mStates;
+        public StateStack()
         {
-            mStates.Peek().OnPoped();
-            State temp = mStates.Pop();
+            mStates = new Stack<State>();
+        }
+        public void Push(State state)
+        {
+            if (state == null)
+            {
+                Debug.Log("You are trying to push a null state into stack");
+                return;
+            }
             if (mStates.Count > 0)
             {
-                mStates.Peek().OnReturnTop();
+
+                mStates.Peek().OnPressed();
             }
-            return temp;
+            state.OnPushed();
+
+            Debug.Log("A state is push");
+            mStates.Push(state);
         }
-        return null;
-    }
-    public State Peek()
-    {
-        if (mStates.Count > 0)
+        public State Pop()
         {
-            return mStates.Peek();
+            Debug.Log("POP");
+            if (mStates.Count > 0)
+            {
+                mStates.Peek().OnPoped();
+                State temp = mStates.Pop();
+                if (mStates.Count > 0)
+                {
+                    mStates.Peek().OnReturnTop();
+                }
+                return temp;
+            }
+            return null;
         }
-        return null;
+        public State Peek()
+        {
+            if (mStates.Count > 0)
+            {
+                return mStates.Peek();
+            }
+            return null;
+        }
     }
 }

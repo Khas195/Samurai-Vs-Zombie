@@ -87,6 +87,7 @@ namespace Game.Core.UI
 
                     if (temp.name == "MoveButton")
                     {
+                         
                         UIUnitRangeState.GetInstance().SetCommand(new MoveCommand(), mManager.moveRange);
                     }
                     else if (temp.name == "AttackButton")

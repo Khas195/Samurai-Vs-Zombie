@@ -19,11 +19,10 @@ namespace Game.Core.UI
         UIManager mManager; // cache for manager
         Command unitCommand;
         Material color;
-        GameObject target;
         bool firstClick;
         public void Init(UIManager mManager)
         {
-            target = new GameObject();
+           
             this.mManager = mManager;
         }
         public void SetCommand(Command command, Material color)
@@ -44,19 +43,28 @@ namespace Game.Core.UI
             }
             if (hit.transform.gameObject == mManager.unitRange)
             {
+
                 cData info = cData.CreatePackage();
                 info.SetValue<GameObject>("SELF", UISelecting.GetInstance().GetSelectingUnit());
+                if (UISelecting.GetInstance().GetSelectingUnit().GetComponent<Unit>() == null)
+                {
+                    Debug.Log("ui selecting unit null");
+                }
+                Debug.Log(hit.transform.gameObject.name + "assdfsdf");
                 if ( hit.transform.gameObject.GetComponent<Unit>() != null)
                 {
+                   
                     info.SetValue<GameObject>("TARGET", hit.transform.gameObject);
                 }
                 else
                 {
-                    this.target.transform.position = hit.point;
-                    info.SetValue<GameObject>("TARGET", this.target);
+                    this.mManager.moveTest.transform.position = hit.point;
+                    info.SetValue<GameObject>("TARGET", this.mManager.moveTest);
+                    
                 }
-                UISelecting.GetInstance().GetSelectingUnit().GetComponent<Unit>().setCommand(this.unitCommand);
-                cData.ReturnPackage(info);
+                this.unitCommand.setCommandInfo(info);
+                UISelecting.GetInstance().GetSelectingUnit().GetComponent<Unit>().SetCommand(this.unitCommand);
+                
             }
             else if (hit.transform.gameObject.GetComponent<Unit>() != null)
             {

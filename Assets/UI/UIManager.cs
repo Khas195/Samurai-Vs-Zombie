@@ -10,10 +10,11 @@ namespace Game.Core.UI
     {
         Camera camera;
         StateStack uiStates;
-
+        
         public float uiScaleX;
         public float uiScaleY;
 
+        public GameObject moveTest;
         public GameObject unitRange;
         public Material attRange;
         public Material moveRange;

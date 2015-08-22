@@ -3,30 +3,26 @@ using System.Collections;
 using Game.Core.MessageModule;
 public class StandGround : Ability {
     
-    public override void ExecuteAbility(cData package)
+    public void ExecuteAbility(cData package)
     {
-        Unit mUnit = package.GetValue<Unit>("UNIT");
-        Debug.Log("Defense " + mUnit.getDefense());
-        mUnit.setDefense((int)(mUnit.getDefense() * 1.5));
-
-        Debug.Log("Defense " + mUnit.getDefense());
+        base.ExecuteAbility(package);
+        GameObject self = package.GetValue<GameObject>("SELF");
+        Unit mUnit = self.GetComponent<Unit>();
+        Debug.Log("Defense " + mUnit.GetDefense());
+        mUnit.SetDefense((int)(mUnit.GetDefense() * 1.5));
+        mUnit.SetMana(mUnit.GetMana() - 2);
+        Debug.Log("Defense " + mUnit.GetDefense());
     }
-    public void setupAbilityRange()
+    public override void SetupAbilityRange()
     {
         abilityRange = 0;
     }
-    public override float getAbilityRange()
+    public override bool CheckRequirement(cData package)
     {
-        setupAbilityRange();
-        return abilityRange;
-    }
-    public override bool needToShowRange()
-    {
-        setupAbilityRange();
-        if (abilityRange == 0)
-        {
+        GameObject self = package.GetValue<GameObject>("SELF");
+        Unit mUnit = self.GetComponent<Unit>();
+        if (mUnit.GetMana() < 2)
             return false;
-        }
         return true;
     }
 }

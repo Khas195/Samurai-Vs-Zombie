@@ -4,38 +4,37 @@ using Game.Core.MessageModule;
 public class DoubleShot : Ability {
     
 
-    public override void ExecuteAbility(cData package)
+    public void ExecuteAbility(cData package)
     {
-        setupAbilityRange();
-        Unit mUnit = package.GetValue<Unit>("UNIT");
-        Unit enemy = package.GetValue<Unit>("ENEMY");
-        Vector3 enemyLocation = enemy.gameObject.transform.position;
-        NavMeshAgent agent = mUnit.getNavMeshAgent();
+        base.ExecuteAbility(package);
+        GameObject self = package.GetValue<GameObject>("SELF");
+        Unit mUnit = self.GetComponent<Unit>();
+        GameObject target = package.GetValue<GameObject>("TARGET");
+        Unit targetUnit = target.GetComponent<Unit>();
+        Vector3 enemyLocation = targetUnit.gameObject.transform.position;
+        NavMeshAgent agent = mUnit.GetNavMeshAgent();
         float distanceBetweenMyUnitAndEnemy = Vector3.Distance(enemyLocation, agent.gameObject.transform.position);
         if (abilityRange >= distanceBetweenMyUnitAndEnemy)
         {
-            Debug.Log("ENEmy health " + enemy.getHealth());
-            if (mUnit.getDamage() - enemy.getDefense() > 0)
-                enemy.setHealth(enemy.getHealth() - 2*(mUnit.getDamage() - enemy.getDefense()));
-            Debug.Log("ENEmy health " + enemy.getHealth());
+            Debug.Log("ENEmy health " + targetUnit.GetHealth());
+            if (mUnit.GetDamage() - targetUnit.GetDefense() > 0)
+            {
+                targetUnit.SetHealth(targetUnit.GetHealth() - 2 * (mUnit.GetDamage() - targetUnit.GetDefense()));
+                mUnit.SetMana(mUnit.GetMana() - 2);
+            }
+            Debug.Log("ENEmy health " + targetUnit.GetHealth());
         }
     }
-    public void setupAbilityRange()
+    public override void SetupAbilityRange()
     {
         abilityRange = 10;
     }
-    public override float getAbilityRange()
+    public override bool CheckRequirement(cData package)
     {
-        setupAbilityRange();
-        return abilityRange;
-    }
-    public override bool needToShowRange()
-    {
-        setupAbilityRange();
-        if (abilityRange == 0)
-        {
+        GameObject self = package.GetValue<GameObject>("SELF");
+        Unit mUnit = self.GetComponent<Unit>();
+        if (mUnit.GetMana() < 2)
             return false;
-        }
         return true;
     }
 }

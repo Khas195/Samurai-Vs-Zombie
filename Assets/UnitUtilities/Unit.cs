@@ -27,7 +27,12 @@ public class Unit : MonoBehaviour {
         setCommand(new AttackCommand());
         ExecuteCommand();*/
     }
-    public cData getInfo()
+    void Update()
+    {
+        if (command != null)
+            ExecuteCommand();
+    }
+    public cData GetInfo()
     {
         unitInfo = cData.CreatePackage();
         unitInfo.SetValue<Unit>("UNIT", this);
@@ -36,61 +41,64 @@ public class Unit : MonoBehaviour {
         //unitInfo.SetValue<Unit>("ALLY", ally.GetComponent<Unit>());
         return unitInfo;
     }
-    public void setCommand(Command _command){
+    public void SetCommand(Command _command){
         command = _command;
-        command.setCommandInfo(getInfo());
+        command.setCommandInfo(GetInfo());
     }
     public void ExecuteCommand(){
-        command.Execute();
+        if (command.CheckRequirement() == false)
+            command = null;
+        else
+            command.Execute();
         cData.ReturnPackage(unitInfo);
     }
-    public void setHealth(int _health)
+    public void SetHealth(int _health)
     {
         health = _health;
     }
-    public int getHealth()
+    public int GetHealth()
     {
         return health;
     }
 
-    public void setMana(int _mana)
+    public void SetMana(int _mana)
     {
         mana = _mana;
     }
-    public int getMana()
+    public int GetMana()
     {
         return mana;
     }
 
-    public int getDamage()
+    public int GetDamage()
     {
         return damage;
     }
-    public void setDamage(int _damage)
+    public void SetDamage(int _damage)
     {
         damage = _damage;
     }
 
-    public int getDefense()
+    public int GetDefense()
     {
         return defense;
     }
-    public void setDefense(int _defense)
+    public void SetDefense(int _defense)
     {
         defense = _defense;
     }
 
-    public NavMeshAgent getNavMeshAgent()
+    public NavMeshAgent GetNavMeshAgent()
     {
         return agent;
     }
 
-    public float getAttackRange()
+    public float GetAttackRange()
     {
         return attackRange;
     }
 
-    public float getMovement()
+    public float GetMovement()
     {
         return movement;
     }

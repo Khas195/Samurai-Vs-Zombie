@@ -10,9 +10,12 @@ public abstract class Command {
     public void setCommandInfo(cData package) 
     {
         if (info == null)
+        {
             info = package;
+            Debug.Log("package = null");
+        }
         else
-            info.AddAllValueFromAnotherPackage(package);
-        
+            info.AddAllValueFromAnotherPackage(package); 
     }
+    abstract public bool CheckRequirement();
 }

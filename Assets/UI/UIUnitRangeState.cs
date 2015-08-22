@@ -18,6 +18,7 @@ namespace Game.Core.UI
 
         UIManager mManager; // cache for manager
         Command unitCommand;
+        float range;
         Material color;
         bool firstClick;
         public void Init(UIManager mManager)
@@ -41,23 +42,19 @@ namespace Game.Core.UI
                 firstClick = false;
                 return;
             }
-            if (hit.transform.gameObject == mManager.unitRange)
+            if (hit.transform.gameObject == mManager.unitRange || hit.transform.gameObject.GetComponent<Unit>() != null)
             {
-
+                GameObject selectedUnit = UISelecting.GetInstance().GetSelectingUnit();
                 cData info = cData.CreatePackage();
-                info.SetValue<GameObject>("SELF", UISelecting.GetInstance().GetSelectingUnit());
-                if (UISelecting.GetInstance().GetSelectingUnit().GetComponent<Unit>() == null)
+                info.SetValue<GameObject>("SELF", selectedUnit);
+                if (hit.transform.gameObject.GetComponent<Unit>() != null )
                 {
-                    Debug.Log("ui selecting unit null");
-                }
-                Debug.Log(hit.transform.gameObject.name + "assdfsdf");
-                if ( hit.transform.gameObject.GetComponent<Unit>() != null)
-                {
-                   
+                    Debug.Log("Command Attack passed");
                     info.SetValue<GameObject>("TARGET", hit.transform.gameObject);
                 }
                 else
                 {
+                    Debug.Log("Command Move passed");
                     this.mManager.moveTest.transform.position = hit.point;
                     info.SetValue<GameObject>("TARGET", this.mManager.moveTest);
                     
@@ -66,13 +63,15 @@ namespace Game.Core.UI
                 UISelecting.GetInstance().GetSelectingUnit().GetComponent<Unit>().SetCommand(this.unitCommand);
                 
             }
-            else if (hit.transform.gameObject.GetComponent<Unit>() != null)
-            {
-                UISelecting.GetInstance().SetSelectingUnit(hit.transform.gameObject);
-                mManager.PopUntil(UISelecting.GetInstance());
-                return;
-            } 
             mManager.PopUntil(UIIdle.GetInstance());
+        }
+
+        private bool CheckWithinRange(Vector3 midPoint,Vector3 point)
+        {
+            float distance = Mathf.Sqrt(Mathf.Pow(midPoint.x - point.x, 2) + Mathf.Pow(midPoint.z - point.z, 2));
+            if (range >= distance)
+                return true;
+            return false;
         }
 
         public void OnPressed()

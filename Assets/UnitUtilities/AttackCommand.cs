@@ -8,6 +8,7 @@ public class AttackCommand : Command
 
     public override void Execute()
     {
+        Debug.Log("attack");
         if (info == null)
         {
             Debug.Log("AttackCommand has not set info");

@@ -3,10 +3,8 @@ using System.Collections;
 using Game.Core.MessageModule;
 public abstract class Ability {
     protected float abilityRange;
-    public void ExecuteAbility(cData package)
-    {
-        SetupAbilityRange();
-    }
+    public abstract void ExecuteAbility(cData package);
+    
     
     abstract public bool CheckRequirement(cData package);
     abstract public void SetupAbilityRange();

@@ -17,10 +17,23 @@ public class AbilityCommand : Command {
             return;
         }
         
-        //for test
-        //setAbility(new StandGround());
-        ability.CheckRequirement(info);
-        ability.ExecuteAbility(info);
+        string unitType = info.GetValue<GameObject>("SELF").name.Split(' ')[0];
+        if (unitType == "Knight")
+            setAbility(StandGround.getInstance());
+        else if (unitType == "Archer")
+            setAbility(DoubleShot.getInstance());
+        else if (unitType == "Healer")
+            setAbility(Heal.getInstance());
+        else
+            Debug.Log(unitType);
+        
+        Debug.Log(ability.ToString());
+        if (ability.CheckRequirement(info))
+        {
+            Debug.Log("finish check ability info");
+            ability.ExecuteAbility(info);
+            Debug.Log("finish execute ability");
+        }
         cData.ReturnPackage(info);
     }
     public override bool CheckRequirement()
@@ -37,6 +50,4 @@ public class AbilityCommand : Command {
         }
         return true;
     }
-
-    
 }

@@ -20,7 +20,7 @@ public class LogoLoader : MonoBehaviour {
 
     private IEnumerator Countdown()
     {
-        yield return new WaitForSeconds(8.2f);
+        yield return new WaitForSeconds(2f);
         Application.LoadLevel(1);
     }
 }

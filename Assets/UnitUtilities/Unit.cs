@@ -30,7 +30,10 @@ public class Unit : MonoBehaviour {
     void Update()
     {
         if (command != null)
+        {
             ExecuteCommand();
+            Debug.Log("execute command in unit");
+        }
     }
     public cData GetInfo()
     {
@@ -47,9 +50,16 @@ public class Unit : MonoBehaviour {
     }
     public void ExecuteCommand(){
         if (command.CheckRequirement() == false)
+        {
+            Debug.Log("command requirement null");
             command = null;
+        }
         else
+        {
+            Debug.Log("execute command");
             command.Execute();
+            
+        }
         cData.ReturnPackage(unitInfo);
     }
     public void SetHealth(int _health)

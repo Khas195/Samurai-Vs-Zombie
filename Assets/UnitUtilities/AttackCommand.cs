@@ -38,7 +38,7 @@ public class AttackCommand : Command
     {
         if (info.GetValue<GameObject>("SELF") == null)
         {
-            Debug.Log("can not get info value self");
+            Debug.Log("ATTACK can not get info value self");
             return false;
         }
         else if (info.GetValue<GameObject>("TARGET") == null)

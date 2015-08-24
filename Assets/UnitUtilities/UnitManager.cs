@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.UnitUtilities;
 
 public class UnitManager {
 
@@ -11,21 +12,23 @@ public class UnitManager {
         return instance;
     }
 
-    bool unitIsSelected = false;
-    GameObject selectedUnit = null;
-    public bool getUnitIsSelected(){
-        return unitIsSelected;
-    }
-    public void setUnitIsSelected(bool isSelected)
+    ArrayList mUnits = new ArrayList();
+    void Start()
     {
-        unitIsSelected = isSelected;
+        GameObject temp;
+        for (int i = 0; i < 100; i++)
+        {
+            temp = GameObject.Find("Knight " + i);
+
+        }
     }
-    public GameObject getSelectedUnit()
-    {
-        return selectedUnit;
-    }
-    public void setSelectedUnit(GameObject _selectedUnit)
-    {
-        selectedUnit = _selectedUnit;
+    public void Initialize(string type)
+    { 
+        GameObject temp;
+        for (int i = 0; i < 100; i++)
+        {
+            temp = GameObject.Find(type + i);
+            mUnits.Add(temp);
+        }
     }
  }

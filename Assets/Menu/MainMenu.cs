@@ -32,21 +32,25 @@ namespace Game.Engine.Menu
         public void OnPressed()
         {
             setButtonActive(false);
+            menu.backButton.gameObject.SetActive(true);
         }
 
         public void OnPushed()
         {
             setButtonActive(true);
+            menu.backButton.gameObject.SetActive(false);
         }
 
         public void OnPoped()
         {
             setButtonActive(false);
+            menu.backButton.gameObject.SetActive(true);
         }
 
         public void OnReturnTop()
         {
             setButtonActive(true);
+            menu.backButton.gameObject.SetActive(false);
         }
 
 
@@ -74,6 +78,10 @@ namespace Game.Engine.Menu
             else if (button == menu.creditsButton)
             {
                 menu.getStateStack().Push(CreditsMenu.getInstance());
+            }
+            else if (button == menu.startGameButton)
+            {
+                Application.LoadLevel(2);
             }
         }
     }

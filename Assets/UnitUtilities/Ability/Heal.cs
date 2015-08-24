@@ -2,11 +2,17 @@
 using System.Collections;
 using Game.Core.MessageModule;
 public class Heal : Ability {
-    
+    private static Heal instance = new Heal();
 
-    public void ExecuteAbility(cData package)
+    private Heal() { }
+    public static Heal getInstance()
     {
-        base.ExecuteAbility(package);
+        return instance;
+    }
+    public override void ExecuteAbility(cData package)
+    {
+        SetupAbilityRange();
+        Debug.Log("execute heal");
         GameObject self = package.GetValue<GameObject>("SELF");
         Unit mUnit = self.GetComponent<Unit>();
         GameObject target = package.GetValue<GameObject>("TARGET");

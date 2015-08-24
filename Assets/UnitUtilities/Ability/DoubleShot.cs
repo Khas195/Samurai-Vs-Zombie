@@ -2,11 +2,16 @@
 using System.Collections;
 using Game.Core.MessageModule;
 public class DoubleShot : Ability {
-    
+    private static DoubleShot instance = new DoubleShot();
 
-    public void ExecuteAbility(cData package)
+    private DoubleShot() { }
+    public static DoubleShot getInstance()
     {
-        base.ExecuteAbility(package);
+        return instance;
+    }
+    public override void ExecuteAbility(cData package)
+    {
+        SetupAbilityRange();
         GameObject self = package.GetValue<GameObject>("SELF");
         Unit mUnit = self.GetComponent<Unit>();
         GameObject target = package.GetValue<GameObject>("TARGET");

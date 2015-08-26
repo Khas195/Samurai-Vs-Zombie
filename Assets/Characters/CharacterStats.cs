@@ -7,6 +7,7 @@ public class CharacterStats : MonoBehaviour {
     float curHealth;
     public float attackDamage;
 
+    public float attackSpeed;
     public delegate void OnHealthChange(float health);
     public OnHealthChange onHealthReduced;
 	// Use this for initialization

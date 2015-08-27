@@ -6,8 +6,10 @@ public class CharacterStats : MonoBehaviour {
     public float maxHealth;
     float curHealth;
     public float attackDamage;
-
-    public float attackSpeed;
+    public float getCurHealth()
+    {
+        return curHealth;
+    }
     public delegate void OnHealthChange(float health);
     public OnHealthChange onHealthReduced;
 	// Use this for initialization

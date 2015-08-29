@@ -12,6 +12,7 @@ namespace Game.Engine.Menu
         public Button creditsButton;
         public Button enableSoundButton;
         public Button backButton;
+        public GameObject loadingScene;
 
         StateStack stateStack = new StateStack();
         public StateStack getStateStack()

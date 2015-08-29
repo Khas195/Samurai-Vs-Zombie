@@ -19,7 +19,8 @@ public class Gate : MonoBehaviour
     }
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.name == "Cube")
+        Debug.Log(collider.gameObject.tag); 
+        if (collider.gameObject.tag == "samurai")
         {
             if (isTriggered == false)
             {

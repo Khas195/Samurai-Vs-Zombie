@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour {
     NavMeshObstacle ghoulObstacle;
     Vector3 ghoulOriginalPosition;
     AudioSource audio;
-    void Start()
+    void Awake()
     {
         ghoulAgent = this.GetComponent<NavMeshAgent>();
         ghoulAnimator = this.GetComponent<Animator>();
@@ -18,7 +18,14 @@ public class EnemyController : MonoBehaviour {
         audio = this.GetComponent<AudioSource>();
     }
 
-    
+    public void OnCollisionEnter(Collision other )
+    {
+        Debug.Log("trigger " + other.gameObject.tag);
+        if (other.gameObject.tag == "samurai")
+        {
+            ghoulStats.SufferDamage(other.gameObject.GetComponent<CharacterStats>().attackDamage);
+        }
+    }
     public Animator GetGhoulAnimator()
     {
         return ghoulAnimator;

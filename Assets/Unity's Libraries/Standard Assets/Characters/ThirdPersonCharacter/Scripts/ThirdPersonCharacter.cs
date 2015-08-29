@@ -37,8 +37,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
         Vector3 m_CapsuleCenter;
         CapsuleCollider m_Capsule;
         bool m_Crouching;
-
-
         void Start()
         {
             m_Animator = GetComponent<Animator>();
@@ -184,7 +182,6 @@ namespace UnityStandardAssets.Characters.ThirdPerson
                 m_Animator.applyRootMotion = false;
                 m_GroundCheckDistance = 0.1f;*/
                 m_Animator.Play("Attack");
-
             }
         }
 

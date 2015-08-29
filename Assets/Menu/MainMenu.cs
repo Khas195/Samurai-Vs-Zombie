@@ -81,7 +81,8 @@ namespace Game.Engine.Menu
             }
             else if (button == menu.startGameButton)
             {
-                Application.LoadLevel(2);
+                menu.gameObject.SetActive(false);
+                menu.loadingScene.GetComponent<ScreenLoader>().LoadScene();
             }
         }
     }

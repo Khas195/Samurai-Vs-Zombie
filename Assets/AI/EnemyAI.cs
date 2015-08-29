@@ -14,8 +14,6 @@ public class EnemyAI : MonoBehaviour
     void Start()
     {
         Initialize();
-
-
     }
 
     // Update is called once per frame
@@ -41,15 +39,13 @@ public class EnemyAI : MonoBehaviour
         foreach(GameObject ghoul in ghouls)
         {
             ghoulControllers.Add(ghoul.GetComponent<EnemyController>());
-        }
-        foreach (EnemyController ghoul in ghoulControllers)
-        {
-            ghoul.GetGhoulAnimator().SetFloat("speed", 0);
+            if (ghoul.GetComponent<EnemyController>().GetGhoulAnimator() == null)
+                Debug.Log("get component enemycontroll null");
+            ghoul.GetComponent<EnemyController>().GetGhoulAnimator().SetFloat("speed", 0);
         }
     }
     void Chase(List<GameObject> enemy, GameObject samurai)
     {
-        Debug.Log(ghouls.Capacity);
         for (int index = 0; index < ghouls.Capacity; index++)
         {
             // Test if the distance between the agent and the player
@@ -67,8 +63,8 @@ public class EnemyAI : MonoBehaviour
                 {
                     Attack(ref Timer[index], ref hasAttacked[index], samurai, ghouls[index]);
                 }
-                ghoulControllers[index].GetGhoulObstacle().enabled = true;
                 ghoulControllers[index].GetGhoulAgent().enabled = false;
+                ghoulControllers[index].GetGhoulObstacle().enabled = true;
             }
             else
             {
@@ -94,7 +90,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (time < 0)
         {
-            Debug.Log(samurai.GetComponent<CharacterStats>().getCurHealth());
+    
             time = attackTime;
             attacked = false;
         }
